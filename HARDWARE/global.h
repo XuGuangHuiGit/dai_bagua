@@ -92,7 +92,8 @@ typedef struct {
 
 typedef struct{
 	int time;
-	//u8 flag;
+	u8 getH_flag;
+	u8 below_flag;
 }BeHDelay;
 
 typedef struct{
@@ -102,6 +103,7 @@ typedef struct{
 
 
 //ÉùÃ÷
+extern int holdTime ;
 extern int PIT_period;
 extern int PIT_f;
 extern u8 start_flag;
@@ -119,6 +121,8 @@ extern u8 MotorDone_Flag;
 extern int RelayTimeout;
 extern int relay_timeout;
 
+
+void getSign(int channel);
 void PWDReset(void);
 void set_light(u16 ligh, u8 state);
 void _gpio_init(GPIO_TypeDef* GPIOx ,GPIOMode_TypeDef GPIO_MODE, GPIOSpeed_TypeDef GPIO_SPEED, uint16_t pin);

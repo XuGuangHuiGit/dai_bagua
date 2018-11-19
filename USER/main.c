@@ -85,7 +85,12 @@ int main(void)
 	IRQ_tt[6].GPIO_Pin = GPIO_Pin_7;
 	IRQ_tt[7].GPIOx = GPIOA;
 	IRQ_tt[7].GPIO_Pin = GPIO_Pin_8;
-	TIM2_init(PIT_period);
+	for(ind= 0; ind<STEERNUM;ind++){
+		HighDelay[ind].getH_flag = 0;
+		HighDelay[ind].time = 0;
+		HighDelay[ind].below_flag = 0;
+	}
+	ind = 0;
 	delay_init();
 	video_Init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -93,6 +98,7 @@ int main(void)
 	cmd_init();
 	IO_Init();
 	//set_relay(relay2, ON);
+	TIM2_init(PIT_period);
 	uprintf(USART3, "start sys\ndefault pwd %s\nnow pwd %s\n", PassWord.PWD, PassWord.pwd);
 	
     while(1){

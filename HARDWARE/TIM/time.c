@@ -252,7 +252,21 @@ void TIM2_IRQHandler(){
 				 }
 				 //hold
 				 if(GPIO_ReadInputDataBit(IRQ_tt[index].GPIOx, IRQ_tt[index].GPIO_Pin) == 1){
-					 HighDelay[index].time++;
+					 if(HighDelay[index].getH_flag == 0){
+						 HighDelay[index].time++;
+						 if(HighDelay[index].time > holdTime){
+							 HighDelay[index].getH_flag = 1;
+							 getSign(index+1);
+						 }
+					 }
+					 HighDelay[index].below_flag = 0;
+				 }else{
+					 HighDelay[index].below_flag++; 
+					 if(HighDelay[index].below_flag >=5){
+						 HighDelay[index].below_flag = 0;
+						 HighDelay[index].time = 0;
+						 HighDelay[index].getH_flag = 0;
+					 }
 				 }
 			}
 

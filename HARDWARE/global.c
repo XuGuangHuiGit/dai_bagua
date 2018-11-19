@@ -21,7 +21,7 @@ void _gpio_init(GPIO_TypeDef* GPIOx ,GPIOMode_TypeDef GPIO_MODE, GPIOSpeed_TypeD
 }
 
 void IO_Init(){
-	holdTime = 2*PIT_f;
+	holdTime = 3*PIT_f;
 	
 	EXTI_InitTypeDef EXTI_InitStruct;
     GPIO_InitTypeDef GPIO_InitStructure;
@@ -73,57 +73,57 @@ void IO_Init(){
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
     
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line1;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line1;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	//   PIN A2
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
     
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource2);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line2;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource2);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line2;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	// PIN C3
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
     
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource3);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line3;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource3);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line3;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	
 	
@@ -131,91 +131,91 @@ void IO_Init(){
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource4);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line4;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource4);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line4;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	/////pin A5
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line5;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource5);
+////    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line5;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	/////pin A6
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource6);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line6;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
-	
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource6);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line6;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
+//	
 	/////pin A7
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource7);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line7;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource7);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line7;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	
 	//A8
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource8);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line8;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource8);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line8;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 	//A9
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
