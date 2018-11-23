@@ -362,6 +362,7 @@ int getOffest(int num){
 
 void getSign(int channel){
 	channel -=1;
+	int i = 0;
 	//if(video[channel].CanGet_Flag == ENABLE){
 //		video[channel].touched = TOUCHED;
 //		video[channel].time = rongcuoTime*PIT_f;
@@ -382,10 +383,14 @@ void getSign(int channel){
 			//check pwd
 			if(strcmp(PassWord.PWD , PassWord.pwd) == 0){
 				//correct pwd
+				for(i = 0; i<STEERNUM; i++){
+					if(light[channel].timeout >10)
+						light[channel].timeout = RelayTimeout*PIT_f;
+				}
 				PassWord.errorPWD_Flag = 0;
 				PWDReset();
 				set_relay(relay1 |relay4, ON);
-				relay_timeout = RelayTimeout*PIT_f;
+				relay_timeout = RelayTimeout*PIT_f + 120*PIT_f;
 				//uprintf(USART3, "cp\n");
 			}else{
 				//error pwd

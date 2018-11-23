@@ -14,7 +14,7 @@ float HardwareVersion;
 
 char *mima 			= "5312\0"; //密码
 u8 width	 		= 4;		//密码位数，务必与上面一致 最大为8
-int timeout			= 100;		//密码输入时的超时时间，单位秒
+int timeout			= 10;		//密码输入时的超时时间，单位秒
 int RelayTimeout	=10;		//密码正确后，继电器自动关闭时间，单位秒
 float rongcuoTime	=0.6;		//防止一次弹弦后，多次接受同一个信号，单位秒
 

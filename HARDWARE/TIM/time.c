@@ -203,11 +203,14 @@ void SteerInit(u16 group,u16 channel){
     }
 }
 
+u8 WrongP_Flag = 0;
+
 void gotoPWDWrong(){
 	int index = 0;
 	for(index = 0; index < STEERNUM ; index ++){
 		light[index].light_Flag = 1;
-		light[index].timeout  = 1.5*PIT_f;	
+		light[index].timeout  = 1.7*PIT_f;
+		WrongP_Flag = 1;	
 	}
 }
 
@@ -246,8 +249,17 @@ void TIM2_IRQHandler(){
 				 //light
 				 if(light[index].light_Flag == 1){
 					light[index].timeout --;
+					if(WrongP_Flag == 1 && light[index].timeout == 1*PIT_f){
+						light[index].light_Flag = 0;
+					}
 					if(light[index].timeout <= 0){
 						light[index].light_Flag = 0;
+						WrongP_Flag = 0;
+					}
+				 }else{
+					if(WrongP_Flag == 1 && light[index].timeout == 0.7*PIT_f){
+						light[index].light_Flag = 1;
+						WrongP_Flag = 0;
 					}
 				 }
 				 //hold
@@ -288,10 +300,13 @@ void TIM2_IRQHandler(){
 			//¼ÌµçÆ÷
 			if(relay_timeout >= 0){
 				relay_timeout --;
-				if(relay_timeout == 2){
+				if(relay_timeout == 120*PIT_f){
 					set_relay(relay1 |relay4, OFF);
-					start_flag = DISABLE;
+					
 					//uprintf(USART3, "cheers\n");
+				}
+				if(relay_timeout == 2){
+					start_flag = DISABLE;
 				}
 			}
 		}else{
@@ -300,7 +315,7 @@ void TIM2_IRQHandler(){
 				light[i].pwdWrong_Flag = 0;
 				light[i].light_Flag = DISABLE;
 				light[i].liushui_flag = 0;
-				set_light(1<<i,ON);
+				set_light(1<<i,OFF);
 			}
 			PWDReset();
 		}	
