@@ -114,6 +114,12 @@ int main(void)
 				set_light(1<<ind,ON);
 			}
 		}
+		
+		if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == 1){
+			start_flag = ENABLE;
+		}else{
+			start_flag = DISABLE;
+		}
 		ind ++;
 		if(ind == STEERNUM){
 			ind = 0;

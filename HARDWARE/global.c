@@ -220,19 +220,19 @@ void IO_Init(){
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;// | GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA , &GPIO_InitStructure);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource9);
-    
-    EXTI_InitStruct.EXTI_Line = EXTI_Line9;
-    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
-    EXTI_Init(&EXTI_InitStruct);
-    
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
-    NVIC_Init(&NVIC_InitStructure);
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource9);
+//    
+//    EXTI_InitStruct.EXTI_Line = EXTI_Line9;
+//    EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+//    EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;
+//    EXTI_Init(&EXTI_InitStruct);
+//    
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = EXIT1_Priority;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = EXIT1_Priority;
+//    NVIC_Init(&NVIC_InitStructure);
 }
 
 /***
@@ -374,7 +374,7 @@ void getSign(int channel){
 		PassWord.pwd[PassWord.index] = channel +49;
 		channel = (getOffest(PassWord.index) + channel)%8;
 		light[channel].light_Flag = 1;
-		light[channel].timeout = 600*PIT_f;
+		light[channel].timeout = 300*PIT_f;
 		
 		PassWord.index++;
 		
@@ -384,8 +384,8 @@ void getSign(int channel){
 			if(strcmp(PassWord.PWD , PassWord.pwd) == 0){
 				//correct pwd
 				for(i = 0; i<STEERNUM; i++){
-					if(light[channel].timeout >10)
-						light[channel].timeout = RelayTimeout*PIT_f;
+					if(light[i].timeout >10)
+						light[i].timeout = RelayTimeout*PIT_f;
 				}
 				PassWord.errorPWD_Flag = 0;
 				PWDReset();

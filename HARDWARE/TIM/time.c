@@ -257,9 +257,13 @@ void TIM2_IRQHandler(){
 						WrongP_Flag = 0;
 					}
 				 }else{
-					if(WrongP_Flag == 1 && light[index].timeout == 0.7*PIT_f){
-						light[index].light_Flag = 1;
-						WrongP_Flag = 0;
+
+					if(WrongP_Flag == 1 && light[index].timeout >= 0.7*PIT_f){
+						light[index].timeout --;
+						if(light[index].timeout == 0.7*PIT_f){
+							light[index].light_Flag = 1;
+							WrongP_Flag = 0;
+						}
 					}
 				 }
 				 //hold
