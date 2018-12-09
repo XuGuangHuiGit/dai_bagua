@@ -15,17 +15,9 @@ void Usart_init(USART_TypeDef* USARTx , u32 baud ,FunctionalState NewState){
 	
     
 	if(USARTx == USART1){
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //usart1--TX 
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//usart1--RX
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
+		return ;
 	}else if (USARTx == USART2){
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2; //usart2--TX  
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;//usart2--RX
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
+		return ;
 	}else if (USARTx == USART3){
 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10; //usart2--TX  
 		GPIO_Init(GPIOB, &GPIO_InitStructure);

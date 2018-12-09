@@ -203,130 +203,19 @@ void SteerInit(u16 group,u16 channel){
     }
 }
 
-u8 WrongP_Flag = 0;
 
-void gotoPWDWrong(){
-	int index = 0;
-	for(index = 0; index < STEERNUM ; index ++){
-		light[index].light_Flag = 1;
-		light[index].timeout  = 1.7*PIT_f;
-		WrongP_Flag = 1;	
-	}
-}
-
-typedef struct {
-	int time;
-	u8 which;
-}liushuideng;
-liushuideng liushui = {0,0};
-
-IRQ_t IRQ_tt[STEERNUM];
 /*定时中断服务函数*/
 void TIM2_IRQHandler(){
 	int index = 0;
 	if(TIM_GetITStatus(TIM2,TIM_IT_Update) != RESET ){
 		TIM_ClearITPendingBit(TIM2,TIM_FLAG_Update);//清中断标志位
+		//uprintf(USART3,"TIM2\n");
 		if(start_flag == ENABLE){
-			liushui.time ++;
-			if(liushui.time >= (1000/PIT_period)){
-//				if(light[liushui.which].light_Flag == 0){
-//					set_light(1<<liushui.which,OFF);
-//					
-//				}
-				light[liushui.which].liushui_flag = 0;
-				
-				liushui.which ++;
-				if(liushui.which == STEERNUM) liushui.which = 0;
-				//set_light(1<<liushui.which,ON);
-				
-				light[liushui.which].liushui_flag = 1;
-				liushui.time = 0;			
-			}
-			
-			
-	//		//get sign
-			for(index = 0; index < STEERNUM ; index ++){
-				 //light
-				 if(light[index].light_Flag == 1){
-					light[index].timeout --;
-					if(WrongP_Flag == 1 && light[index].timeout == 1*PIT_f){
-						light[index].light_Flag = 0;
-					}
-					if(light[index].timeout <= 0){
-						light[index].light_Flag = 0;
-						WrongP_Flag = 0;
-					}
-				 }else{
 
-					if(WrongP_Flag == 1 && light[index].timeout >= 0.7*PIT_f){
-						light[index].timeout --;
-						if(light[index].timeout == 0.7*PIT_f){
-							light[index].light_Flag = 1;
-							WrongP_Flag = 0;
-						}
-					}
-				 }
-				 //hold
-				 if(relay_timeout<=2){
-					if(GPIO_ReadInputDataBit(IRQ_tt[index].GPIOx, IRQ_tt[index].GPIO_Pin) == 1){
-						 if(HighDelay[index].getH_flag == 0){
-							 HighDelay[index].time++;
-							 if(HighDelay[index].time > holdTime){
-								 HighDelay[index].getH_flag = 1;
-								 getSign(index+1);
-							 }
-						 }
-						 HighDelay[index].below_flag = 0;
-					 }else{
-						 HighDelay[index].below_flag++; 
-						 if(HighDelay[index].below_flag >=5){
-							 HighDelay[index].below_flag = 0;
-							 HighDelay[index].time = 0;
-							 HighDelay[index].getH_flag = 0;
-						 }
-					 }
-				 } 
-			}
-
-			//pwd
-			if(PassWord.index != 0){
-				PassWord.timeout --;
-				if(PassWord.timeout <= 0){
-					//uprintf(USART3, "pwd timeout\n");
-					PWDReset();
-					gotoPWDWrong();
-				}
-			}
-			if(PassWord.errorPWD_Flag == 1){
-				PassWord.errorPWD_Flag = 0;
-				PWDReset();
-				gotoPWDWrong();
-			}
 			
-			//继电器
-			if(relay_timeout >= 0){
-				relay_timeout --;
-				if(relay_timeout == 120*PIT_f){
-					set_relay(relay1 |relay4, OFF);
-					
-					//uprintf(USART3, "cheers\n");
-				}
-				if(relay_timeout == 2){
-					relay_timeout = 0;
-					start_flag = DISABLE;
-				}
-			}
 		}else{
-			for(int i = 0; i<8; i++){
-				light[i].timeout = 0;
-				light[i].pwdWrong_Flag = 0;
-				light[i].light_Flag = DISABLE;
-				light[i].liushui_flag = 0;
-				set_light(1<<i,OFF);
-			}
-			PWDReset();
+
 		}	
-		//uprintf(USART3, "*********************************\n");
 	}
 }
 
