@@ -35,3 +35,4 @@
 ..\obj\global.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\global.o: ..\HARDWARE\TIM\time.h
 ..\obj\global.o: ..\SYSTEM\delay\delay.h
+..\obj\global.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

@@ -9,13 +9,16 @@
 #include "string.h"
 
 
-char* version = "software version:18.7.23";
+char* version = "sof";
 float HardwareVersion;
 
 u8 start_flag = DISABLE;
 
 int PIT_period = 20;
 int PIT_f = 0;
+
+int right_time = 10;
+int wrong_time = 2;
 
 void Rcc_init(){
     RCC_APB2PeriphClockCmd(	RCC_APB2Periph_GPIOB, ENABLE );//PORTB ±÷” πƒ‹ 
@@ -36,7 +39,7 @@ void Rcc_init(){
  
 int main(void)
 {	 
-
+	int dex = 0;
 	PIT_f = 1000/PIT_period;
     Rcc_init();
 
@@ -46,9 +49,19 @@ int main(void)
 	cmd_init();
 	IO_Init();
 	TIM2_init(PIT_period);
+	
+	LightLine_Init();
+	
 	uprintf(USART3, "start\n");
     while(1){
-        
+        if(LightLine[dex].Pass_Flag == 1){
+			set_light(1<<dex, ON);
+		}else{
+			set_light(1<<dex, OFF);
+		}
+		dex ++; 
+		
+		if(dex >= LIGHT_NUM) dex = 0;
     }
 }
 

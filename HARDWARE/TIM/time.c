@@ -210,12 +210,32 @@ void TIM2_IRQHandler(){
 	if(TIM_GetITStatus(TIM2,TIM_IT_Update) != RESET ){
 		TIM_ClearITPendingBit(TIM2,TIM_FLAG_Update);//清中断标志位
 		//uprintf(USART3,"TIM2\n");
-		if(start_flag == ENABLE){
-
+		if(Status.Wrong_timeout >0){
+			Status.Wrong_timeout--;
+			if(Status.Wrong_timeout == (int)(wrong_time * 0.65)){
+				Set_allLight(0);
+			}else if(Status.Wrong_timeout == (int)(wrong_time * 0.35)){
+				Set_allLight(1);
+			}
 			
-		}else{
-
+			if(Status.Wrong_timeout == 0){
+				Reset_Line();
+			}
 		}	
+		
+		if(Status.currect_timeout >0){
+			Status.currect_timeout--;
+			if(Status.currect_flag == 1){
+				//打开继电器 and
+				Status.currect_flag = 0;
+			}
+			
+			if(Status.currect_timeout == 0){
+				//关闭继电器
+				//reset
+				Reset_Line();
+			}
+		}
 	}
 }
 
