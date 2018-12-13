@@ -73,9 +73,25 @@ void IO_Init(){
 	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_15);
 	
 	//灯   使用B
-	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_0);
-	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_1);
-	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_9);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_0);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_1);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_2);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_3);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_4);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_5);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_6);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_7);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_8);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_9);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_10);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_11);
+	_gpio_init(GPIOA ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_12);
+	
+	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_3);
+	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_4);
+	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_5);
+	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_6);
+	_gpio_init(GPIOB ,GPIO_Mode_Out_PP, GPIO_Speed_50MHz, GPIO_Pin_7);
 
 	
 	//一下是中断的配置
@@ -147,36 +163,100 @@ void set_relay(u8 relay, u8 state){
 void set_light(u32 ligh, u8 state){
 	if((ligh&light1) == light1){
 		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_0);
+			GPIO_SetBits(GPIOA, GPIO_Pin_0);
 		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_0);
 		}
 	}
 	
 	if((ligh&light2) == light2){
 		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_1);
+			GPIO_SetBits(GPIOA, GPIO_Pin_1);
 		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_1);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_1);
 		}
 	}
 	
 	if((ligh&light3) == light3){
 		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_9);
+			GPIO_SetBits(GPIOA, GPIO_Pin_2);
 		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_9);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_2);
 		}
 	}
 	
 	if((ligh&light4) == light4){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_3);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_3);
+		}
+	}
+	if((ligh&light5) == light5){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_4);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_14);
+		}
+	}
+	
+	if((ligh&light6) == light6){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_5);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+		}
+	}
+	
+	if((ligh&light7) == light7){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_6);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_6);
+		}
+	}
+	
+	if((ligh&light8) == light8){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_7);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_7);
+		}
+	}
+	
+	if((ligh&light9) == light9){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_8);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_8);
+		}
+	}
+	
+	if((ligh&light10) == light10){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_9);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_9);
+		}
+	}
+	
+	if((ligh&light11) == light11){
+		if(state == ON){
+			GPIO_SetBits(GPIOA, GPIO_Pin_10);
+		}else{
+			GPIO_ResetBits(GPIOA, GPIO_Pin_10);
+		}
+	}
+	
+	if((ligh&light12) == light12){
 		if(state == ON){
 			GPIO_SetBits(GPIOA, GPIO_Pin_11);
 		}else{
 			GPIO_ResetBits(GPIOA, GPIO_Pin_11);
 		}
 	}
-	if((ligh&light5) == light5){
+	
+	if((ligh&light13) == light13){
 		if(state == ON){
 			GPIO_SetBits(GPIOA, GPIO_Pin_12);
 		}else{
@@ -184,7 +264,23 @@ void set_light(u32 ligh, u8 state){
 		}
 	}
 	
-	if((ligh&light6) == light6){
+	if((ligh&light14) == light14){
+		if(state == ON){
+			GPIO_SetBits(GPIOB, GPIO_Pin_3);
+		}else{
+			GPIO_ResetBits(GPIOB, GPIO_Pin_3);
+		}
+	}
+	
+	if((ligh&light15) == light15){
+		if(state == ON){
+			GPIO_SetBits(GPIOB, GPIO_Pin_4);
+		}else{
+			GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+		}
+	}
+	
+	if((ligh&light16) == light16){
 		if(state == ON){
 			GPIO_SetBits(GPIOB, GPIO_Pin_5);
 		}else{
@@ -192,91 +288,11 @@ void set_light(u32 ligh, u8 state){
 		}
 	}
 	
-	if((ligh&light7) == light7){
+	if((ligh&light17) == light17){
 		if(state == ON){
 			GPIO_SetBits(GPIOB, GPIO_Pin_6);
 		}else{
 			GPIO_ResetBits(GPIOB, GPIO_Pin_6);
-		}
-	}
-	
-	if((ligh&light8) == light8){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light9) == light9){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light10) == light10){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light11) == light11){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light12) == light12){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light13) == light13){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light14) == light14){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light15) == light15){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light16) == light16){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
-		}
-	}
-	
-	if((ligh&light17) == light17){
-		if(state == ON){
-			GPIO_SetBits(GPIOB, GPIO_Pin_7);
-		}else{
-			GPIO_ResetBits(GPIOB, GPIO_Pin_7);
 		}
 	}
 	
